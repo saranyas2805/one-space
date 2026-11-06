@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
+import type { FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, LayoutGrid, LoaderCircle, Sparkles } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
@@ -31,7 +32,16 @@ export default function SignupPage() {
         },
       });
       if (signUpError) throw signUpError;
-      if (data.session) {
+      if (data.session && data.user) {
+        const { error: profileError } = await supabase.from("profiles").upsert(
+          {
+            id: data.user.id,
+            email: data.user.email ?? null,
+            full_name: fullName.trim(),
+          },
+          { onConflict: "id" }
+        );
+        if (profileError) throw profileError;
         router.replace("/");
         router.refresh();
         return;
