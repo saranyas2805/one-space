@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import {
   Activity, ArrowUpRight, Bell, BookOpen, BriefcaseBusiness, CalendarDays,
   Check, ChevronRight, CircleHelp, Compass, Gamepad2, GraduationCap,
-  Home, LayoutGrid, Menu, MessageCircle, Moon, MoreHorizontal, Plus,
+  Home, LayoutGrid, LogOut, Menu, MessageCircle, Moon, MoreHorizontal, Plus,
   Search, Send, Settings, ShieldCheck, Sparkles, Sun, Trophy, Users,
   Video, WandSparkles, X, Zap
 } from "lucide-react";
@@ -97,6 +97,7 @@ export default function HomePage() {
               <label className="hidden items-center gap-2 rounded-xl border border-white/10 bg-white/[.04] px-3 py-2 md:flex"><Search size={16} className="text-slate-500"/><input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search OneSpace..." className="w-36 bg-transparent text-xs outline-none placeholder:text-slate-600"/></label>
               <button onClick={() => setDark(!dark)} className="rounded-xl border border-white/10 p-2 text-slate-400 hover:text-white" aria-label="Toggle theme">{dark ? <Sun size={17}/> : <Moon size={17}/>}</button>
               <button onClick={() => setActive("Notifications")} className="relative rounded-xl border border-white/10 p-2 text-slate-400 hover:text-white" aria-label="Notifications"><Bell size={17}/><span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-cyan-400"/></button>
+              <form action="/logout" method="post"><button type="submit" className="rounded-xl border border-white/10 px-3 py-2 text-xs font-semibold text-slate-400 transition hover:border-rose-400/30 hover:text-rose-200"><LogOut size={15} className="mr-1 inline"/>Sign out</button></form>
               <div className="hidden h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-violet-400 to-cyan-400 text-sm font-bold text-slate-950 sm:grid">S</div>
             </div>
           </header>
